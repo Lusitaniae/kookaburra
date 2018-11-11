@@ -2,11 +2,14 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: kookaburra
-  labels: {app: kookaburra}
+  labels:
+    app: kookaburra
 spec:
   replicas: 3
   template:
-    metadata: {labels: {app: kookaburra}}
+    metadata:
+      labels:
+        app: kookaburra
     spec:
       containers:
       - name: kookaburra
@@ -19,6 +22,9 @@ kind: Service
 apiVersion: v1
 metadata:
   name: kookaburra
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8000"
 spec:
   type: LoadBalancer
   selector:
