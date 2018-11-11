@@ -30,11 +30,11 @@ Run application
 
 `make serve`
 
-Deploy to k8s
+Deploy application to k8s
 
 `make deploy`
 
-Deploy Prometheus
+Deploy Prometheus Server and node-exporter
 
 `make prometheus`
 
