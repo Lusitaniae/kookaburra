@@ -26,6 +26,15 @@ Build and Deploy application to Kubernetes
 Deploy Prometheus
 `make prometheus`
 
+## Minikube Usage
+
+Open Prometheys dashboard
+
+`minikube service prometheus-service`
+
+Open application
+
+`minikube service kookaburra`
 
 ### Issues?
 `brew install gettext # if make fails on the envsubst command`
