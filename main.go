@@ -19,7 +19,7 @@ var (
 
 	CovilhaTotal = promauto.NewCounter(prometheus.CounterOpts{
 		Name: "covilha_requests_total",
-		Help: "The total number of requests for the Covilha time.",
+		Help: "The total number of requests for the time in Covilha.",
 	})
 )
 
@@ -27,15 +27,15 @@ func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	message := `
 <html>
 Welcome to the Kookaburra application: <br>
-- <a href="/homersimpson"> Homer Simpson's Picture. </a><br>
-- <a href="/covilha"> Time in Covilha, Portugal. </a><br>
-- <a href="/metrics"> Application metrics. </a><br>
+- <a href="/homersimpson">Homer Simpson's Picture</a>.<br>
+- <a href="/covilha">Time in Covilha, Portugal</a>.<br>
+- <a href="/metrics">Application metrics</a>.<br>
 </html>
 `
 	fmt.Fprint(w, message)
 }
 
-func HomerSimpson(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func Simpson(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	http.ServeFile(w, r, "./simpson.png")
 	SimpsonTotal.Inc()
 }
@@ -51,7 +51,7 @@ func Covilha(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 func main() {
 	router := httprouter.New()
 	router.GET("/", Index)
-	router.GET("/homersimpson", HomerSimpson)
+	router.GET("/homersimpson", Simpson)
 	router.GET("/covilha", Covilha)
 	router.Handler("GET", "/metrics", promhttp.Handler())
 
