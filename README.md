@@ -21,9 +21,11 @@ Clone repo
 `git clone https://github.com/Lusitaniae/kookaburra.git; cd kookaburra;`
 
 Build and Deploy application to Kubernetes
+
 `make ship`
 
 Deploy Prometheus
+
 `make prometheus`
 
 ## Minikube Usage
