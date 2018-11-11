@@ -41,6 +41,12 @@ upload:
 	docker push $(REPO):$(TAG)
 
 deploy:
+	@echo ">> deploying to Kubernetes"
 	envsubst < k8s/deployment.yml | kubectl apply -f -
 
 ship: pack upload deploy clean
+
+prometheus:
+	@echo ">> deploying prometheus"
+	kubectl apply -f k8s/prometheus-deployment.yml
+	kubectl apply -f k8s/node-exporter.yml
