@@ -24,7 +24,7 @@ Clone repo
 
 Build application
 
-`make local`
+`make build`
 
 Run application
 
@@ -37,6 +37,16 @@ Deploy application to k8s
 Deploy Prometheus Server and node-exporter
 
 `make prometheus`
+
+## Live GKE
+
+Access live instance of the application on my GKE cluster
+
+http://35.197.194.222/
+
+Access live Prometheus instance using port forward (if you deployed to your own cluster and have access)
+
+`kubectl port-forward service/prometheus-service 8080`
 
 ## Minikube Usage
 
@@ -62,7 +72,7 @@ if you cannot connect to your local k8s cluster
 
 ### Golang
 
-The application is very simple and the Golang standard libraries allow you to meet all the requirements with a short SLOC.
+The application is very simple and the Golang standard libraries allow you to meet all the requirements within a short SLOC.
 
 To that a simple but performant router were added, along with prometheus libs to natively export application metrics without a need for a middleman to read and transform the statistics into the Prometheus format.
 
@@ -76,15 +86,13 @@ We can probably also figure out how to make Golang not rely on the timezone data
 ### Kubernetes
 Benefiting from the fact that the application is self contained, the k8s stack is quite simple.
 
-One load balancer and one application is all we need to go live. 
+One load balancer and one application is all we need to go live. To that we also add *one prometheus server*, to monitor all the Kubernetes components and the application itself, and *one node exporter*, to monitor all the nodes system metrics (e.g. cpu, ram, disk, net).
 
-To that we also add *one prometheus server*, to monitor all the Kubernetes components and the application itself, and *one node exporter*, to monitor all the nodes system metrics (e.g. cpu, ram, disk, net).
-
-When using a public cloud managed k8s service we also benefit from a tight integration with the managed services from the provider, in case of the load balancer defined, we automatically get a publicly available load balancer correctly forwarding traffic to the right pods.
+When using a public cloud managed k8s service we also benefit from a tight integration with the managed services from the provider, in case of the load balancer defined, we automatically get a publicly available load balancer correctly forwarding traffic to the right pods from a fixed IP address.
 
 ### Prometheus
 Due to its service discovery capabilities and good integration with k8s APIs, the Prometheus instance pretty much manages itself once some default config files are set in place.
 
 Any changes to the cluster is automatically picked up by Prometheus, and monitoring will reflect the changes in no time. Allowing a very dynamic container based infrastructure to be neatly integrated with a monitoring system.
 
-The instance is also managed and deployed from Kubernetes. 
+For convenience this is also managed/deployed from kubernetes and it is deployed to the same cluster. Not production ready.
