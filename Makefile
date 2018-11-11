@@ -40,9 +40,9 @@ deploy:
 	@echo ">> deploying to Kubernetes"
 	envsubst < k8s/deployment.yml | kubectl apply -f -
 
-local: format vet build
+build: format vet build
 
-complete: pack upload deploy clean
+ship: pack upload deploy clean
 
 prometheus:
 	@echo ">> deploying prometheus"

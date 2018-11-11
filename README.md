@@ -96,3 +96,5 @@ Due to its service discovery capabilities and good integration with k8s APIs, th
 Any changes to the cluster is automatically picked up by Prometheus, and monitoring will reflect the changes in no time. Allowing a very dynamic container based infrastructure to be neatly integrated with a monitoring system.
 
 For convenience this is also managed/deployed from kubernetes and it is deployed to the same cluster. Not production ready.
+
+For production it should have been setup in a external network and have an easier access than using kubectl to proxy requests.
