@@ -18,6 +18,7 @@ Except for the standard library, I've also used the following packages:
 ## Get Started
 
 Clone repo
+
 `git clone https://github.com/Lusitaniae/kookaburra.git; cd kookaburra;`
 
 Build and Deploy application to Kubernetes
@@ -30,7 +31,7 @@ Deploy Prometheus
 
 ## Minikube Usage
 
-Open Prometheys dashboard
+Open Prometheus dashboard
 
 `minikube service prometheus-service`
 
@@ -39,6 +40,11 @@ Open application
 `minikube service kookaburra`
 
 ### Issues?
-`brew install gettext # if make fails on the envsubst command`
 
-`minikube start # if you cannot connect to your local k8s cluster`
+if make fails on the envsubst command
+
+`brew install gettext `
+
+if you cannot connect to your local k8s cluster
+
+`minikube start`
