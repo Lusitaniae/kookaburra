@@ -22,9 +22,17 @@ Clone repo
 
 `git clone https://github.com/Lusitaniae/kookaburra.git; cd kookaburra;`
 
-Build and Deploy application to Kubernetes
+Build application
 
-`make ship`
+`make local`
+
+Run application
+
+`make serve`
+
+Deploy to k8s
+
+`make deploy`
 
 Deploy Prometheus
 
@@ -44,7 +52,7 @@ Open application
 
 if make fails on the envsubst command
 
-`brew install gettext `
+`brew install gettext`
 
 if you cannot connect to your local k8s cluster
 

@@ -7,10 +7,6 @@ pkgs  = $(shell go list ./...)
 
 export TAG
 
-# test: install
-# 	@echo ">> running tests"
-# 	go test ./...
-
 format:
 	@echo ">> formatting code"
 	go fmt $(pkgs)
@@ -44,7 +40,9 @@ deploy:
 	@echo ">> deploying to Kubernetes"
 	envsubst < k8s/deployment.yml | kubectl apply -f -
 
-ship: pack upload deploy clean
+local: format vet build
+
+complete: pack upload deploy clean
 
 prometheus:
 	@echo ">> deploying prometheus"
