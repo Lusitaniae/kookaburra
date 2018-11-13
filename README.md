@@ -34,9 +34,9 @@ Deploy application to k8s
 
 `make deploy`
 
-Deploy Prometheus Server and node-exporter
+Deploy Prometheus Server and node-exporter (GCP account is required to enable Cluster Admin Role)
 
-`make prometheus`
+`make prometheus gcp_user=email@host.com`
 
 ## Live GKE
 
