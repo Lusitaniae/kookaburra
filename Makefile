@@ -44,9 +44,11 @@ build: format vet build
 
 ship: pack upload deploy clean
 
-prometheus:
+cluster_role:
 	@echo ">> adding cluster-admin-binding"
 	kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user $(gcp_user)
+
+prometheus:
 	@echo ">> deploying prometheus"
 	kubectl apply -f k8s/prometheus-deployment.yml
 	@echo ">> deploying node exporter"
